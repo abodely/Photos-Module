@@ -1,0 +1,180 @@
+.containerLessThan5 {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.firstImageLessThan5 {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.mainContainer {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.firstImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.secondImage {
+  display: none;
+  transition: transform .4s;
+}
+
+.secondImage:hover {
+  transform: scale(1.1);
+}
+
+.thirdImage {
+  display: none;
+  transition: transform .4s;
+}
+
+.thirdImage:hover {
+  transform: scale(1.1);
+}
+
+.fourthImage {
+  display: none;
+  transition: transform .4s;
+}
+
+.fourthImage:hover {
+  transform: scale(1.1);
+}
+
+.fifthImage {
+  display: none;
+  transition: transform .4s;
+}
+
+.fifthImage:hover {
+  transform: scale(1.1);
+}
+
+@media only screen and (min-width: 744px) {
+
+  .containerLessThan5 {
+    max-height: 372px;
+    overflow: hidden;
+    border: 2px solid rgb(136, 130, 130);
+  }
+  
+  .firstImageLessThan5 {
+    object-fit: cover;
+    min-height: 372px;
+  }
+
+  .mainContainer {
+    display: grid;
+    max-height: 372px;
+    grid-template-columns: repeat(3, 33.33%);
+    grid-template-rows: repeat(2, 50%);
+    grid-template-areas:
+    "firstImageContainer firstImageContainer secondImageContainer"
+    "firstImageContainer firstImageContainer thirdImageContainer";
+    overflow: hidden;
+    border: 2px solid rgb(136, 130, 130);
+  }
+  
+  .firstImageContainer {
+    grid-area: firstImageContainer;
+    min-height: 372px;
+    overflow: hidden;
+    border: 2px solid rgb(136, 130, 130);
+  }
+
+  .firstImage {
+    object-fit: cover;
+    min-height: 372px;
+    transition: transform .4s;
+  }
+
+  .firstImage:hover {
+    transform: scale(1.1);
+  }
+  
+  .secondImageContainer {
+    display: block;
+    grid-area: secondImageContainer;
+    width: 100%;
+    min-height: 182px;
+    overflow: hidden;
+    border: 2px solid rgb(136, 130, 130);
+  }
+
+  .secondImage {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    min-height: 182px;
+  }
+  
+  .thirdImageContainer {
+    display: block;
+    grid-area: thirdImageContainer;
+    width: 100%;
+    min-height: 182px;
+    overflow: hidden;
+    border: 2px solid rgb(136, 130, 130);
+  }
+
+  .thirdImage {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    min-height: 182px;
+  }
+}
+
+
+@media only screen and (min-width: 1126px) {
+
+  .mainContainer {
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: repeat(2, 50%);
+    grid-template-areas:
+    "firstImageContainer firstImageContainer secondImageContainer fourthImageContainer"
+    "firstImageContainer firstImageContainer thirdImageContainer fifthImageContainer";
+  }
+
+  .fourthImageContainer {
+    display: block;
+    grid-area: fourthImageContainer;
+    width: 100%;
+    min-height: 182px;
+    overflow: hidden;
+    border: 2px solid rgb(136, 130, 130);
+  }
+
+  .fourthImage {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    min-height: 182px;
+  }
+  
+  .fifthImageContainer {
+    display: block;
+    grid-area: fifthImageContainer;
+    width: 100%;
+    min-height: 182px;
+    overflow: hidden;
+    border: 2px solid rgb(136, 130, 130);
+  }
+
+  .fifthImage {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    min-height: 182px;
+  }
+}
