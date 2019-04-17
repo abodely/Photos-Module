@@ -12,5 +12,4 @@ _______________________________________________________________________________
 | `/home/:homeid/photos/add/`             | POST   | Add photos to listing     |
 | `/home/:homeid/photos/update/:photoid`  | PATCH  | Update photos of listing  |
 | `/home/:homeid/photos/delete/:photoid`  | DELETE | Delete photos of listing  |
-|_________________________________________|________|___________________________|
 
