@@ -10,9 +10,10 @@ const PORT = 3001;
 
 app.use(compression());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '../public')));
+app.use('/', express.static(path.join(__dirname, '../public')));
+app.use('/home/:homeid', express.static(path.join(__dirname, '../public')));
 
-app.get('/photosandcomments/:id', (req, res) => {
+app.get('/home/:homeid/photos', (req, res) => {
   index.photosAndComments.findOne({ id: parseInt(req.params.id, 10) }, { _id: 0 })
     .select('photosAndComments')
     .exec((err, data) => {
@@ -25,9 +26,48 @@ app.get('/photosandcomments/:id', (req, res) => {
     });
 });
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
+app.get('/home/:homeid/photos/add', (req, res) => {
+  index.photosAndComments.save({ id: parseInt(req.params.id, 10) }, { _id: 0 })
+    .select('photosAndComments')
+    .exec((err, data) => {
+      if (err) {
+        console.log('ERROR finding data from db: ', err);
+      } else {
+        res.setHeader('Content-Type', 'application/json');
+        res.json(data);
+      }
+    });
 });
+
+app.get('/home/:homeid/photos/update', (req, res) => {
+  index.photosAndComments.updateOne({ id: parseInt(req.params.id, 10) }, { _id: 0 })
+    .select('photosAndComments')
+    .exec((err, data) => {
+      if (err) {
+        console.log('ERROR finding data from db: ', err);
+      } else {
+        res.setHeader('Content-Type', 'application/json');
+        res.json(data);
+      }
+    });
+});
+
+app.get('/home/:homeid/photos/delete', (req, res) => {
+  index.photosAndComments.deleteOne({ id: parseInt(req.params.id, 10) }, { _id: 0 })
+    .select('photosAndComments')
+    .exec((err, data) => {
+      if (err) {
+        console.log('ERROR finding data from db: ', err);
+      } else {
+        res.setHeader('Content-Type', 'application/json');
+        res.json(data);
+      }
+    });
+});
+
+// app.get('/*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../public/index.html'));
+// });
 
 app.listen(PORT, () => {
   console.log(`listening to port ${PORT}`);

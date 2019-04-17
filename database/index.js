@@ -25,17 +25,3 @@ module.exports = {
   db,
   photosAndCommentsSchema,
 };
-
-
-// const allData = (callback) => {
-//   console.log('what', callback);
-//   photosAndComments.find().
-//     exec((err, data) => {
-//       if (err) {
-//         console.log('ERROR finding data from db: ', err);
-//       } else {
-//         console.log('cb: ', callback);
-//         callback(JSON.stringify(data));
-//       }
-//     });
-// };
