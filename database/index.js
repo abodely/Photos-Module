@@ -10,7 +10,7 @@ const photosAndCommentsSchema = mongoose.Schema([
     id: { type: Number, unique: true },
     photosAndComments: [
       {
-        imageUrl: String,
+        url: String,
         comment: String,
       },
     ],

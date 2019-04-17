@@ -1,4 +1,4 @@
-const urlPrefix = 'https://s3-us-west-1.amazonaws.com/fec-project-abodely-carousel/';
+const urlPrefix = 'http://sdc-airbnb-photos.s3-website-us-east-1.amazonaws.com';
 
 const japanUrls = [
   'Japan/photo-1480796927426-f609979314bd.jpeg',
