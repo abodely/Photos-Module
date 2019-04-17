@@ -5,9 +5,9 @@ Component to handle the main photo gallery of the checkout page.
 
 #CRUD API Endpoints
 
- ______________________________________________________________________________
+_______________________________________________________________________________
 | Endpoint                                | Type   | Operation                 |
-|-----------------------------------------|----- --|---------------------------|
+|-----------------------------------------|--------|---------------------------|
 | `/home/:homeid/photos`                  | GET    | Get all photos in listing |
 | `/home/:homeid/photos/add/`             | POST   | Add photos to listing     |
 | `/home/:homeid/photos/update/:photoid`  | PATCH  | Update photos of listing  |
