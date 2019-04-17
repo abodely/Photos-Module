@@ -4,7 +4,6 @@ Component to handle the main photo gallery of the checkout page.
 #Set Up
 
 #CRUD API Endpoints
-
 _______________________________________________________________________________
 | Endpoint                                | Type   | Operation                 |
 |-----------------------------------------|--------|---------------------------|
