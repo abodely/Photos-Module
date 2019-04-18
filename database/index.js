@@ -1,27 +1,37 @@
-const mongoose = require('mongoose');
-const { DBUSER, DBPW } = require('./dbAccessKey');
+const password = require('./config.js');
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize('homes', 'jfeng', password);
 
 
-const db = mongoose.connect(`mongodb://${DBUSER}:${DBPW}@localhost/photosAndComments`, { useNewUrlParser: true });
-// const db = mongoose.connect('mongodb://172.17.0.2/photosAndComments', { useNewUrlParser: true, useCreateIndex: true });
-
-const photosAndCommentsSchema = mongoose.Schema([
-  {
-    id: { type: Number, unique: true },
-    photosAndComments: [
-      {
-        url: String,
-        comment: String,
-      },
-    ],
-  },
-]);
-
-const photosAndComments = mongoose.model('photosAndComments', photosAndCommentsSchema);
 
 
-module.exports = {
-  photosAndComments,
-  db,
-  photosAndCommentsSchema,
-};
+
+
+
+// const mongoose = require('mongoose');
+// const { DBUSER, DBPW } = require('./dbAccessKey');
+
+
+// const db = mongoose.connect(`mongodb://${DBUSER}:${DBPW}@localhost/photosAndComments`, { useNewUrlParser: true });
+// // const db = mongoose.connect('mongodb://172.17.0.2/photosAndComments', { useNewUrlParser: true, useCreateIndex: true });
+
+// const photosAndCommentsSchema = mongoose.Schema([
+//   {
+//     id: { type: Number, unique: true },
+//     photosAndComments: [
+//       {
+//         url: String,
+//         comment: String,
+//       },
+//     ],
+//   },
+// ]);
+
+// const photosAndComments = mongoose.model('photosAndComments', photosAndCommentsSchema);
+
+
+// module.exports = {
+//   photosAndComments,
+//   db,
+//   photosAndCommentsSchema,
+// };
