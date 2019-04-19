@@ -1,9 +1,10 @@
-# Carousel Module
+# Photos Module
 Component to handle the main photo gallery of the checkout page.
 
 #Set Up
 
 #CRUD API Endpoints
+
 | Endpoint                                | Type   | Operation                 |
 |-----------------------------------------|--------|---------------------------|
 | `/home/:homeid/photos`                  | GET    | Get all photos in listing |
