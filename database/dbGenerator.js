@@ -10,10 +10,10 @@ const getRandomId = () => {
 
 const createPhotoListings = () => {
   const listing = [];
-  for (let i = 1; i < 1000001; i++) {
+  for (let i = 1; i < 1500000; i++) {
     let photo = {};
     photo.id = i;
-    photo.url = urlPrefix + getRandomId() + '.jpg';
+    photo.url = `https://s3.amazonaws.com/sdc-airbnb-photos/photo${getRandomId()}.jpg`;
     photo.comment = faker.lorem.words();
     photo.home_id = Math.floor(Math.random() * 1000 + 1);
     listing.push(photo)
@@ -23,7 +23,7 @@ const createPhotoListings = () => {
 
 const createHomes = () => {
   const homes = [];
-  for (let i = 1; i < 100001; i++) {
+  for (let i = 1; i < 100000; i++) {
     let home = {};
     home.id = i;
     homes.push(home);
@@ -46,6 +46,8 @@ const createMockDataFile = () => {
   const photosJSON = createPhotoListings();
   const homeCSV = convertToCSV(homeJSON);
   const photosCSV = convertToCSV(photosJSON);
+  const file = fs.createWriteStream(path.join(__dirname, 'homeData.csv'));
+  
   fs.writeFile(path.join(__dirname, 'homeData.csv'), homeCSV, err => {
     if (err) console.log(err);
     console.log('Successfully inserted homes data!');
