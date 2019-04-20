@@ -54,4 +54,8 @@ const createMockDataFiles = () => {
   })();
 }
 
+<<<<<<< HEAD
 createMockDataFiles();
+=======
+createMockDataFile();
+>>>>>>> 1d18417a1c4e7572f4a5932df4e76f835815de01
