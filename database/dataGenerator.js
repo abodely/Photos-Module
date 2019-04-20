@@ -39,7 +39,7 @@ const createMockDataFile = () => {
         photo.id = i;
         photo.url = `https://s3.amazonaws.com/sdc-airbnb-photos/photo${getRandomId()}.jpg`;
         photo.comment = faker.lorem.words();
-        photo.home_id = Math.floor(Math.random() * 1000 + 1);
+        photo.home_id = Math.floor(Math.random() * 10000000 + 1);
         if (counter === 0) {
           let header = "id,url,comment,home_id\n";
           photoFile.write(header);
