@@ -1,5 +1,4 @@
-const mockData = require('./mockData.json');
-const { Home, Photo } = require('./index.js');
+const homeData = require('./homeData.csv');
+const photosData = require('./photosData.csv');
+const { Home, Photo } = require('./model.js');
 
-Home.sync({ force: true });
-Photo.sync({ force: true });

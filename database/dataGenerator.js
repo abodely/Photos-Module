@@ -16,7 +16,7 @@ const convertToCSV =  (data) => {
   return rows
 }
 
-const createMockDataFile = () => {
+const createMockDataFiles = () => {
   const homeFile = fs.createWriteStream(path.join(__dirname, 'homeData.csv'));
   const photoFile = fs.createWriteStream(path.join(__dirname, 'photosData.csv'));
   (async() => {
@@ -30,7 +30,7 @@ const createMockDataFile = () => {
         }
         let homeCSV = convertToCSV(homeData)
         if (!homeFile.write(homeCSV)) {
-            await new Promise(resolve => homeFile.once('drain', resolve));
+          await new Promise(resolve => homeFile.once('drain', resolve));
         }
       }
       counter = 0;
@@ -39,7 +39,7 @@ const createMockDataFile = () => {
         photo.id = i;
         photo.url = `https://s3.amazonaws.com/sdc-airbnb-photos/photo${getRandomId()}.jpg`;
         photo.comment = faker.lorem.words();
-        photo.home_id = Math.floor(Math.random() * 1000 + 1);
+        photo.home_id = Math.floor(Math.random() * 10000000 + 1);
         if (counter === 0) {
           let header = "id,url,comment,home_id\n";
           photoFile.write(header);
@@ -47,11 +47,11 @@ const createMockDataFile = () => {
         } else {
           let photoCSV = convertToCSV(photo);
           if (!photoFile.write(photoCSV)) {
-              await new Promise(resolve => photoFile.once('drain', resolve));
+            await new Promise(resolve => photoFile.once('drain', resolve));
           }
         }
       }
-})();
+  })();
 }
 
-createMockDataFile();
+createMockDataFiles();
