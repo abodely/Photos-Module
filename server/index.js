@@ -2,12 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const compression = require('compression');
-const index = require('../database/index');
 const morgan = require('morgan');
-
-
 const app = express();
 const PORT = 3001;
+const pg = require('./postgresController');
+
+const index = require('../database/index');
+const { Home, Photo } = require('../database/model');
 
 app.use(morgan('dev'));
 app.use(compression());
@@ -16,20 +17,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', express.static(path.join(__dirname, '../public')));
 app.use('/home/:homeid', express.static(path.join(__dirname, '../public')));
 
-app.get('/home/:homeid/photos', (req, res) => {
-  index.photosAndComments.findOne({ id: parseInt(req.params.id, 10) }, { _id: 0 })
-    .select('photosAndComments')
-    .exec((err, data) => {
-      if (err) {
-        console.log('ERROR finding data from db: ', err);
-      } else {
-        res.setHeader('Content-Type', 'application/json');
-        res.json(data);
-      }
-    });
+app.get('/api/home/:homeid/photos', (req, res) => {
+    Photo.findAll({
+      where: {'home_id': req.params.id}
+    })
+    .then((data) => console.log(data))
+    // .exec((err, data) => {
+    //   if (err) {
+    //     console.log('ERROR finding data from db: ', err);
+    //   } else {
+    //     res.setHeader('Content-Type', 'application/json');
+    //     res.json(data);
+    //   }
+    // });
 });
 
-app.get('/home/:homeid/photos/add', (req, res) => {
+app.post('/api/home/:homeid/photos/add', (req, res) => {
   index.photosAndComments.save({ id: parseInt(req.params.id, 10) }, { _id: 0 })
     .select('photosAndComments')
     .exec((err, data) => {
@@ -42,31 +45,31 @@ app.get('/home/:homeid/photos/add', (req, res) => {
     });
 });
 
-app.get('/home/:homeid/photos/update', (req, res) => {
-  index.photosAndComments.updateOne({ id: parseInt(req.params.id, 10) }, { _id: 0 })
-    .select('photosAndComments')
-    .exec((err, data) => {
-      if (err) {
-        console.log('ERROR finding data from db: ', err);
-      } else {
-        res.setHeader('Content-Type', 'application/json');
-        res.json(data);
-      }
-    });
-});
+// app.updateOne('/api/home/:homeid/photos/update', (req, res) => {
+//   index.photosAndComments.updateOne({ id: parseInt(req.params.id, 10) }, { _id: 0 })
+//     .select('photosAndComments')
+//     .exec((err, data) => {
+//       if (err) {
+//         console.log('ERROR finding data from db: ', err);
+//       } else {
+//         res.setHeader('Content-Type', 'application/json');
+//         res.json(data);
+//       }
+//     });
+// });
 
-app.get('/home/:homeid/photos/delete', (req, res) => {
-  index.photosAndComments.deleteOne({ id: parseInt(req.params.id, 10) }, { _id: 0 })
-    .select('photosAndComments')
-    .exec((err, data) => {
-      if (err) {
-        console.log('ERROR finding data from db: ', err);
-      } else {
-        res.setHeader('Content-Type', 'application/json');
-        res.json(data);
-      }
-    });
-});
+// app.delete('/api/home/:homeid/photos/delete', (req, res) => {
+//   index.photosAndComments.deleteOne({ id: parseInt(req.params.id, 10) }, { _id: 0 })
+//     .select('photosAndComments')
+//     .exec((err, data) => {
+//       if (err) {
+//         console.log('ERROR finding data from db: ', err);
+//       } else {
+//         res.setHeader('Content-Type', 'application/json');
+//         res.json(data);
+//       }
+//     });
+// });
 
 // app.get('/*', (req, res) => {
 //   res.sendFile(path.join(__dirname, '../public/index.html'));
