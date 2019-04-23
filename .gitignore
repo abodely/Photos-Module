@@ -4,3 +4,8 @@ config.js
 database/photosData.csv
 database/homeData.csv
 package-lock.json
+database/homeDatashort.csv
+database/photosDatashort.csv
+public/carousel.app.js
+public/carousel.app.js.br
+public/carousel.app.js.gz
