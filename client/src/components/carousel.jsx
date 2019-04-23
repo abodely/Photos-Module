@@ -26,19 +26,20 @@ class Carousel extends React.Component {
 
   getRequest() {
     const reqId = Number(window.location.pathname.split('/')[1]);
+    console.log(reqId)
     let id = _.random(1, 100);
     if (reqId > 0 && reqId <= 100) {
       id = reqId;
     }
     $.ajax({
-      url: `/photosandcomments/${id}`,
+      url: `/api/home/${id}/photos/`,
       method: 'GET',
       contentType: 'application/json',
       error: (err) => {
         console.log('GET ERR: ', err);
       },
       success: (data) => {
-        // console.log(data);
+        console.log(data.data);
         this.setState({ data });
       },
     });
