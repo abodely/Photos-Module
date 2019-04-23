@@ -5,29 +5,30 @@ class Home extends Sequelize.Model {}
 Home.init({
   id: {
     type: Sequelize.INTEGER,
-    autoIncrement: true,
+    // autoIncrement: true,
     primaryKey: true,
-    unique: true
   }
 }, {
   sequelize,
-  modelName: 'home'
+  modelName: 'home',
+  timestamps: false
 })
 
 class Photo extends Sequelize.Model {}
 Photo.init({
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+  },
   url: Sequelize.STRING,
   comment: Sequelize.STRING,
-  home_id: Sequelize.INTEGER
 }, {
   sequelize,
-  modelName: 'photo'
+  modelName: 'photo',
+  timestamps: false
 })
 
-Home.hasMany(Photo);
-Photo.belongsTo(Home, {foreignKey: 'home_id'});
-
-Home.sync({ force: true });
-Photo.sync({ force: true });
+// Home.hasMany(Photo);
+Photo.belongsTo(Home, {foreignKey: 'home_id', constraints: false});
 
 module.exports = { Home, Photo };
