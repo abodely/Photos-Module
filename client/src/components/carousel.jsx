@@ -27,12 +27,12 @@ class Carousel extends React.Component {
   getRequest() {
     const reqId = Number(window.location.pathname.split('/')[1]);
     console.log(reqId)
-    let id = _.random(1, 100);
+    let id = _.random(1, 10);
     if (reqId > 0 && reqId <= 100) {
       id = reqId;
     }
     $.ajax({
-      url: `/api/home/${id}/photos/`,
+      url: `/api/home/${reqId}/photos/`,
       method: 'GET',
       contentType: 'application/json',
       error: (err) => {
