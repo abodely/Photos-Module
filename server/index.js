@@ -7,21 +7,28 @@ const app = express();
 const PORT = 3001;
 const pg = require('./postgresController');
 
-const index = require('../database/index');
-const { Home, Photo } = require('../database/model');
+const index = require('../postgresdb/index');
+const { Home, Photo } = require('../postgresdb/model');
 
 app.use(morgan('dev'));
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', express.static(path.join(__dirname, '../public')));
-app.use('/home/:homeid', express.static(path.join(__dirname, '../public')));
+app.use('/home/:homeid/photos', express.static(path.join(__dirname, '../public')));
+
 
 app.get('/api/home/:homeid/photos', (req, res) => {
+  console.time('start')
+  console.log(req.params)
     Photo.findAll({
-      where: {'home_id': req.params.id}
+      where: {'home_id': JSON.parse(req.params.homeid)}
     })
-    .then((data) => console.log(data))
+    .then((data) => {
+      const photos = [];
+      data.map(photo => photos.push(photo.dataValues))
+      res.send(photos)
+      console.timeEnd('start')})
     // .exec((err, data) => {
     //   if (err) {
     //     console.log('ERROR finding data from db: ', err);
@@ -29,8 +36,11 @@ app.get('/api/home/:homeid/photos', (req, res) => {
     //     res.setHeader('Content-Type', 'application/json');
     //     res.json(data);
     //   }
+    
     // });
-});
+  });
+  
+
 
 app.post('/api/home/:homeid/photos/add', (req, res) => {
   index.photosAndComments.save({ id: parseInt(req.params.id, 10) }, { _id: 0 })
