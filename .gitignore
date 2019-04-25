@@ -12,3 +12,6 @@ public/carousel.app.js.gz
 database/homeData.csv
 database/homeData.csv
 database/photosData.csv
+database/photosData.csv
+postgresdb/homeData.csv
+postgresdb/photosData.csv
