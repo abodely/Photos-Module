@@ -41,9 +41,14 @@ app.put('/api/home/:homeid/photos', (req, res) => {
   }, {
     where: req.params.homeid
   })
+  .then(() => res.send('Updated!'))
 });
 
 app.delete('/api/home/:homeid/photos', (req, res) => {
+  Photo.destroy({
+    where: req.params.homeid
+  })
+  .then(() => res.send('Deleted!'))
 });
 
 app.listen(PORT, () => {
