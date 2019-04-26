@@ -24,16 +24,23 @@ app.get('/api/home/:homeid/photos', (req, res) => {
 
 app.post('/api/home/:homeid/photos', (req, res) => {
   let newPhoto = new Photo();
-  newPhoto.id = req.params.id,
-  newPhoto.url = req.params.url,
-  newPhoto.comment = req.params.comment,
+  newPhoto.id = req.body.id,
+  newPhoto.url = req.body.url,
+  newPhoto.comment = req.body.comment,
   newPhoto.home_id = req.params.homeid
   newPhoto.save();
   res.status(200).send('Successfully sent!')
 });
 
 app.put('/api/home/:homeid/photos', (req, res) => {
-
+  Photo.update({
+    id: req.body.id,
+    url: req.body.url,
+    comment: req.body.comment,
+    home_id: req.params.homeid
+  }, {
+    where: req.params.homeid
+  })
 });
 
 app.delete('/api/home/:homeid/photos', (req, res) => {
