@@ -18,7 +18,6 @@ const convertToCSV =  (data) => {
 
 const createMockDataFiles = () => {
   const homeFile = fs.createWriteStream(path.join(__dirname, 'homeData.csv'));
-  // const photoFile = fs.createWriteStream(path.join(__dirname, 'photosData.csv'));
   (async() => {
     let counter = 0;
     for (let i = 1; i < 1e7; i++) {

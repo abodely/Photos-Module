@@ -29,19 +29,3 @@ sequelize
   });
 
 module.exports = sequelize;
-
-
-// pgtools.createdb(config, 'photos', (err, res) => {
-//   if (err) {
-//     console.error(err);
-//     process.exit(-1);
-//   }
-
-//   pgtools.dropdb(config, 'photos', (err, res) => {
-//     if (err) {
-//       console.error(err);
-//       process.exit(-1);
-//     }
-//     console.log(res);
-//   });
-// });
