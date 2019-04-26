@@ -23,10 +23,17 @@ app.get('/api/home/:homeid/photos', (req, res) => {
 });
 
 app.post('/api/home/:homeid/photos', (req, res) => {
-  Photo.save()
+  let newPhoto = new Photo();
+  newPhoto.id = req.params.id,
+  newPhoto.url = req.params.url,
+  newPhoto.comment = req.params.comment,
+  newPhoto.home_id = req.params.homeid
+  newPhoto.save();
+  res.status(200).send('Successfully sent!')
 });
 
-app.patch('/api/home/:homeid/photos', (req, res) => {
+app.put('/api/home/:homeid/photos', (req, res) => {
+
 });
 
 app.delete('/api/home/:homeid/photos', (req, res) => {
