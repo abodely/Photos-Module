@@ -12,23 +12,23 @@ const Modal = ({
         <div className={styles.modalContent}>
           <div className={styles.modalImage}>
             <button className={styles.previousButton} onClick={handleModalPreviousButton} type="button">&#10094;</button>
-            <img src={dataArr.photosAndComments[clickedIdx].imageUrl} alt="host home" />
+            <img src={dataArr[clickedIdx].imageUrl} alt="host home" />
             <button className={styles.nextButton} onClick={handleModalNextButton} type="button">&#10095;</button>
           </div>
           <div className={styles.modalComment}>
             <span>
               {clickedIdx + 1}
               /
-              {dataArr.photosAndComments.length}
+              {dataArr.length}
               {': '}
-              {dataArr.photosAndComments[clickedIdx].comment}
+              {dataArr[clickedIdx].comment}
             </span>
           </div>
         </div>
         <div className={styles.modalGallery}>
-          {dataArr.photosAndComments.map((photoandcomment, idx) => (
-            <img name={idx} src={photoandcomment.imageUrl} key={photoandcomment._id} alt="host home" />
-          ))}
+          {dataArr.map((photoandcomment, idx) => { 
+            <img name={idx} src={photoandcomment.url} key={photoandcomment.id} alt="host home" />
+  })}
         </div>
         <button className={styles.closeButton} onClick={toggleModal} type="button">&#10005;</button>
       </div>,
