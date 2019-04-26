@@ -8,7 +8,7 @@ ________________________________________________________________________________
 | Endpoint                                | Type   | Operation                 |
 |-----------------------------------------|--------|---------------------------|
 | `/home/:homeid/photos`                  | GET    | Get all photos in listing |
-| `/home/:homeid/photos/add/`             | POST   | Add photos to listing     |
-| `/home/:homeid/photos/update/:photoid`  | PATCH  | Update photos of listing  |
-| `/home/:homeid/photos/delete/:photoid`  | DELETE | Delete photos of listing  |
+| `/home/:homeid/photos`                  | POST   | Add photos to listing     |
+| `/home/:homeid/photos`                  | PATCH  | Update photos of listing  |
+| `/home/:homeid/photos`                  | DELETE | Delete photos of listing  |
 
