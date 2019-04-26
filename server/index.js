@@ -17,22 +17,13 @@ app.use('/home/:homeid/photos', express.static(path.join(__dirname, '../public')
 
 
 app.get('/api/home/:homeid/photos', (req, res) => {
-  console.time('start')
-    Photo.findAll({
-      where: {'home_id': JSON.parse(req.params.homeid)}
-    })
+  console.time('response time: ')
+  let getQuery = `SELECT * FROM photos WHERE home_id = ${req.params.homeid};`;
+  sequelize.query(getQuery, { type: sequelize.QueryTypes.SELECT })
     .then(data => {
-      const photos = [];
-      data.map(photo => photos.push(photo.dataValues))
-      res.json(photos)
-      console.timeEnd('start')})
-  // console.time('response time: ')
-  // let getQuery = `SELECT * FROM photos WHERE home_id = ${req.params.homeid};`;
-  // sequelize.query(getQuery, { type: sequelize.QueryTypes.SELECT })
-  //   .then(data => {
-  //   res.json(data); 
-  //   console.timeEnd('response time: ')
-  // })
+    res.json(data); 
+    console.timeEnd('response time: ')
+  })
 });
   
 
