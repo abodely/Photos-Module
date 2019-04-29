@@ -1,25 +1,40 @@
 const nr = require('newrelic');
 const express = require('express');
-const bodyParser = require('body-parser');
 const path = require('path');
-const compression = require('compression');
 const app = express();
 const PORT = 3001;
 const sequelize = require('../postgresdb/index');
 const { Photo } = require('../postgresdb/model');
+const compression = require('compression');
+const bodyParser = require('body-parser');
+const redis = require('redis');
+const client = redis.createClient();
 
 app.use(compression());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', express.static(path.join(__dirname, '../public')));
 app.use('/home/:homeid/photos', express.static(path.join(__dirname, '../public')));
 
-app.get('/api/home/:homeid/photos', (req, res) => {
+const findPhotos = (req, res) => {
   sequelize.query(`SELECT * FROM photos WHERE home_id = ${req.params.homeid};`, { type: sequelize.QueryTypes.SELECT })
-    .then(data => {
+  .then(data => {
+    client.setex(req.params.homeid, 3600, JSON.stringify(data));
     res.json(data);
   });
-});
+} 
+
+const getCache = (req, res) => {
+  let homeid = req.params.homeid;
+  client.get(homeid, (err, result) => {
+    if (result) {
+      res.json(result);
+    } else {
+      findPhotos(req, res);
+    }
+  });
+}
+
+app.get('/api/home/:homeid/photos', getCache);
 
 app.post('/api/home/:homeid/photos', (req, res) => {
   let newPhoto = new Photo();

@@ -3,6 +3,7 @@ const Sequelize = require('sequelize');
 const pgtools = require('pgtools');
 const sequelize = new Sequelize(config.db, config.user, config.password, {
   dialect: 'postgres',
+  logging: false,
   define: {
     underscored: true
   }

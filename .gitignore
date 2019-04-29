@@ -17,3 +17,4 @@ postgresdb/homeData.csv
 postgresdb/photosData.csv
 .DS_Store
 cassandradb/homeData.csv
+photo-proxy.pem

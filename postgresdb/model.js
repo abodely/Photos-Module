@@ -23,12 +23,12 @@ Photo.init({
   comment: Sequelize.STRING,
   home_id: Sequelize.INTEGER
 }, {
-  indexes:[
-    {
-      unique: false,
-      fields:['home_id']
-    }
-  ],
+  // indexes:[
+  //   {
+  //     unique: false,
+  //     fields:['home_id']
+  //   }
+  // ],
   sequelize,
   modelName: 'photo',
   timestamps: false

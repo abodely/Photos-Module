@@ -26,7 +26,6 @@ class Carousel extends React.Component {
 
   getRequest() {
     const reqId = Number(window.location.pathname.split('/')[2]);
-    console.log('req', reqId)
     $.ajax({
       url: `/api/home/${reqId}/photos/`,
       method: 'GET',
@@ -35,7 +34,6 @@ class Carousel extends React.Component {
         console.log('GET ERR: ', err);
       },
       success: (data) => {
-        // console.log(data);
         this.setState({ data });
       },
     });
@@ -57,7 +55,6 @@ class Carousel extends React.Component {
   handleModalNextButton() {
     let { clickedIdx: idx } = this.state;
     const { data } = this.state;
-    // console.log('handlemodal', data)
     if (String(idx) === String(data.length - 1)) {
       this.setState({
         clickedIdx: 0,
@@ -90,7 +87,6 @@ class Carousel extends React.Component {
         <div className={styles.loading}>Loading...</div>
       );
     }
-    console.log('data', data)
     return (
       <div>
         <PhotoCollage
