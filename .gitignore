@@ -1,6 +1,5 @@
 .DS_Store
 node_modules
-config.js
 database/photosData.csv
 database/homeData.csv
 package-lock.json
